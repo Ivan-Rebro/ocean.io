@@ -7,14 +7,16 @@
 var Scene = function (options) {
     var self = {
         context: options.context,
-        layers: []
+        layers:
+            [
+                new BackgroundLayer({
+                    context: options.context
+                }),
+                new ActorsLayer({
+                    context: options.context
+                })
+            ]
     };
-
-    var backgroundLayer = BackgroundLayer({
-            context: options.context
-        });
-
-    self.layers.push(backgroundLayer);
 
     self.update = function() {
         self.layers.forEach(function(layer) {

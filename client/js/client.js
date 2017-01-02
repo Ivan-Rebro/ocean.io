@@ -2,6 +2,8 @@
 
     logInfo("client init");
 
+    assets();
+
     var game = Game({
         context: document.getElementById("game-screen").getContext("2d")
     });

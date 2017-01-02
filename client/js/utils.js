@@ -8,6 +8,12 @@ function getRandom(min, max) {
     return Math.random() * (max - min) + min;
 }
 
+function imgFromFile(src) {
+    var img = new Image();
+    img.src = src;
+    return img;
+}
+
 function getNowDateTime() {
     // TODO: не работает через format("...") ???
 
