@@ -1,6 +1,6 @@
-var BackgroundLayer = function (options) {
-    var img = new Image();
-    img.src = 'client/images/background.jpg';
+var BackgroundLayer = function(options) {
+    var backImg = new Image();
+    backImg.src = Res.BACKGROUND_IMG;//'client/images/background.jpg';
 
     var bubbles = [];
 
@@ -26,15 +26,15 @@ var BackgroundLayer = function (options) {
 
     self.render = function() {
         self.context.drawImage(
-            img,
+            backImg,
             0,
             0,
-            img.width,
-            img.height,
+            backImg.width,
+            backImg.height,
             0,
             0,
-            img.width,
-            img.height
+            backImg.width,
+            backImg.height
         );
 
         bubbles.forEach(function(bubble) {
@@ -54,11 +54,6 @@ var BackgroundLayer = function (options) {
 
     function createBubble() {
         bubbles.push([getRandom(0, 1280), getRandom(0, 720), getRandom(3, 7)]);
-    }
-
-    // возвращает случайное число [min; max)
-    function getRandom(min, max) {
-        return Math.random() * (max - min) + min;
     }
 
     return self;
