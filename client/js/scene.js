@@ -5,23 +5,26 @@
  * @constructor
  */
 var Scene = function (options) {
+
+    var backgroundLayer = new BackgroundLayer({
+        context: options.context
+    });
+
+    var actorsLayer = new ActorsLayer({
+        context: options.context
+    });
+
     var self = {
         context: options.context,
         layers:
             [
-                new BackgroundLayer({
-                    context: options.context
-                }),
-                new ActorsLayer({
-                    context: options.context
-                })
+                backgroundLayer,
+                actorsLayer
             ]
     };
 
-    self.setActorsData = function(data) {
-        if (self.layers.length > 1) {
-            self.layers[1].setActors(data);
-        }
+    self.setWorldMapToScene = function(worldMap) {
+        actorsLayer.setWorldMapActors(worldMap);
     };
 
     self.update = function() {

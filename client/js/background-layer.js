@@ -27,10 +27,10 @@ var BackgroundLayer = function(options) {
         self.context.beginPath();
         self.context.arc(bubble.posX, bubble.posY, bubble.radius,
             0, 2 * Math.PI, false);
-        self.context.fillStyle = "aqua";
+        self.context.fillStyle = "rgba(255, 255, 255, 0.3)";
         self.context.fill();
         self.context.lineWidth = 1;
-        self.context.strokeStyle = "white";
+        self.context.strokeStyle = "rgba(255, 255, 255, 0.3)";
         self.context.stroke();
     }
 
