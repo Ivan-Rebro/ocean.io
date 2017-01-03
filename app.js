@@ -53,6 +53,8 @@ var Player = function(id) {
     return self;
 };
 
+console.log("123");
+
 var io = require('socket.io') (serv,{});
 
 io.sockets.on('connection', function(socket){
@@ -67,21 +69,24 @@ io.sockets.on('connection', function(socket){
         delete PLAYER_LIST[socket.id];
     });
 
-    socket.on('keyPress', function(data) {
-        switch (data.inputId) {
-            case 'left':
-                player.movingLeft = data.state;
-                break;
-            case 'right':
-                player.movingRight = data.state;
-                break;
-            case 'up':
-                player.movingUp = data.state;
-                break;
-            case 'down':
-                player.movingDown = data.state;
-                break;
-        }
+    socket.on('keyEvent', function(data) {
+
+        console.log("key");
+
+        // switch (data.inputId) {
+        //     case 'left':
+        //         player.movingLeft = data.state;
+        //         break;
+        //     case 'right':
+        //         player.movingRight = data.state;
+        //         break;
+        //     case 'up':
+        //         player.movingUp = data.state;
+        //         break;
+        //     case 'down':
+        //         player.movingDown = data.state;
+        //         break;
+        // }
     });
 });
 

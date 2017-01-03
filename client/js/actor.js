@@ -10,8 +10,11 @@ var Actor = function(options) {
         imgY:    options.imgY
     };
 
+    self.update = function() {
+
+    };
+
     self.render = function() {
-        alert('123');
         self.context.drawImage(
             self.img,
             self.imgX,

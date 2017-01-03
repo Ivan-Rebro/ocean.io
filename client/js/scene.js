@@ -18,6 +18,12 @@ var Scene = function (options) {
             ]
     };
 
+    self.setActorsData = function(data) {
+        if (self.layers.length > 1) {
+            self.layers[1].setActors(data);
+        }
+    };
+
     self.update = function() {
         self.layers.forEach(function(layer) {
             layer.update();
