@@ -1,22 +1,32 @@
+/**
+ * Фоновый слой - фоновое изображение,
+ *                пузырьки
+ * @param options
+ * @returns {{context: *, backImg: *, bubbles: Array}}
+ * @constructor
+ */
 var BackgroundLayer = function(options) {
 
     var self = {
         context: options.context,
-        backImg: imgFromFile(assets.IMG_BACKGROUND),
+        backImg: getImgFromFile(assets.IMG_BACKGROUND),
         bubbles: []
     };
 
     function createBubble() {
         self.bubbles.push({
-            posX: getRandom(0, 1280),
-            posY: getRandom(0, 720),
-            radius: getRandom(3, 7)
+            posX: getRandInt(0, 1280),
+            posY: getRandInt(0, 720),
+            radius: getRandNum(
+                assets.PAR_BUBBLES_MIN_RADIUS,
+                assets.PAR_BUBBLES_MAX_RADIUS
+            )
         });
     }
 
     function updateBubble(bubble) {
         if (bubble.posY < 0) {
-            bubble.posX = getRandom(0, 1280);
+            bubble.posX = getRandInt(0, 1280);
             bubble.posY = 720;
         } else {
             bubble.posY -= bubble.radius;

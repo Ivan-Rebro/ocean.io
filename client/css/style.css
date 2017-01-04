@@ -1,3 +1,4 @@
+/* фон страницы */
 #screen-background {
     position: fixed;
     top: 0;
@@ -9,6 +10,7 @@
     text-align: center;
 }
 
+/* игровое поле */
 #game-screen {
     background: white;
     position: absolute;

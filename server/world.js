@@ -1,5 +1,8 @@
 console.log('world module require');
 
+const WORLD_WIDTH = 1280;
+const WORLD_HEIGHT = 720;
+
 function randomInteger(min, max) {
     var rand = min + Math.random() * (max - min)
     return Math.round(rand);
@@ -17,31 +20,68 @@ var Player = function(id) {
 
     var self = {
         id: id,
-        posX: 500,
-        posY: 50,
+        posX: WORLD_WIDTH * Math.random(),
+        posY: WORLD_HEIGHT * Math.random(),
         type: type,
         isInvert: false,
         movingRight: false,
         movingLeft: false,
         movingUp: false,
         movingDown: false,
-        spd: 5
+        spdX: 0,
+        spdY: 0,
+        accelX: 0,
+        accelY: 0,
+        accelResX: 0,
+        accelResY: 0
+
     };
 
     self.updatePosition = function() {
 
-        if (self.movingRight && self.posX < 1280) {
-            self.posX += self.spd;
+        if (self.movingRight) {
+            self.accelX = 0.1;
             self.isInvert = true;
-        } else if (self.movingLeft && self.posX > 0) {
-            self.posX -= self.spd;
+        }
+
+        if (self.movingLeft) {
+            self.accelX = -0.1;
             self.isInvert = false;
         }
 
-        if (self.movingUp && self.posY > 0) {
-            self.posY -= self.spd;
-        } else if (self.movingDown && self.posY < 720) {
-            self.posY += self.spd;
+        if (self.movingUp) {
+            self.accelY = -0.1;
+        }
+
+        if (self.movingDown) {
+            self.accelY = 0.1;
+        }
+
+        self.accelResX = self.accelX + (- self.spdX * 0.1);
+        self.accelResY = self.accelY + (- self.spdY * 0.1);
+
+        if ((self.spdX > -5 && self.spdX < 5)
+            || (self.spdX > -5 && self.accelResX < 0)
+            || (self.spdX < 5 && self.accelResX > 0)) {
+            self.spdX += self.accelResX;
+        }
+
+        if ((self.spdY > -5 && self.spdY < 5)
+            || (self.spdY > -5 && self.accelResY < 0)
+            || (self.spdY < 5 && self.accelResY > 0)) {
+            self.spdY += self.accelResY;
+        }
+
+        if ((self.posX > 0 && self.posX < (1280 - 100 /*self.width*/))
+            || (self.posX > 0 && self.spdX < 0)
+            || (self.posX < (1280 - 100) && self.spdX < 0)) {
+            self.posX += self.spdX;
+        }
+
+        if ((self.posY > 0 && self.posY < (720 - 50 /*self.height*/))
+            || (self.posY > 0 && self.spdY < 0)
+            || (self.posY < (720 - 50) && self.spdY < 0)) {
+            self.posY += self.spdY;
         }
     };
 

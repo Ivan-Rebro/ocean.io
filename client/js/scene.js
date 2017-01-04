@@ -1,5 +1,5 @@
 /**
- * Сцена
+ * Сцена - создание, обновление, отрисовка слоев
  * @param options
  * @returns {{context: *, layers: Array}}
  * @constructor
