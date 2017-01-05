@@ -3,27 +3,26 @@
  *               подключение сокетов,
  *               обработка событий ввода
  */
-(function() {
 
-    console.log('client start loading');
-    assets();
+console.log('client start loading');
 
-    var gameScreen = document.getElementById('game-screen');
+assets();
 
-    var game = Game({
-        context: gameScreen.getContext('2d'),
-        sockets: io()
-    });
+var gameScreen = document.getElementById('game-screen');
 
-    document.onkeydown = function(event) {
-        game.keyPress(event.keyCode, true);
-        console.log('key-down code: ' + event.keyCode);
-    };
+var game = Game({
+    context: gameScreen.getContext('2d'),
+    sockets: io()
+});
 
-    document.onkeyup = function(event) {
-        game.keyPress(event.keyCode, false);
-        console.log('key-up code: ' + event.keyCode);
-    };
+document.onkeydown = function(event) {
+    game.keyPress(event.keyCode, true);
+    console.log('key-down code: ' + event.keyCode);
+};
 
-    console.log('client loading success');
-} ());
+document.onkeyup = function(event) {
+    game.keyPress(event.keyCode, false);
+    console.log('key-up code: ' + event.keyCode);
+};
+
+console.log('client loading success');

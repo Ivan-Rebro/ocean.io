@@ -52,6 +52,8 @@ console.log('UPDATE_INTERVAL: ' + UPDATE_INTERVAL);
 
 var servModule = require(APP_PATH + '/' + SERVER_FOLDER_NAME + '/socket-server');
 var worldModule = require(APP_PATH + '/' + SERVER_FOLDER_NAME + '/world');
+var physicsModule = require(APP_PATH + '/' + SERVER_FOLDER_NAME + '/physics');
+var inputModule = require(APP_PATH + '/' + SERVER_FOLDER_NAME + '/input');
 
 var serv = servModule.serv(LOCALHOST_PORT, APP_PATH, CLIENT_FOLDER_NAME, INDEX_FILENAME);
 servModule.io(serv, worldModule.onConnect, worldModule.onDisconnect, worldModule.onInputEvent);
