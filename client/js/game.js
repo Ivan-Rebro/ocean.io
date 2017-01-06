@@ -22,8 +22,8 @@ var Game = function(options) {
 
     self.keyPress = function(keyCode, isPressed) {
         self.sockets.emit('input-event', {
-                 keyCode: keyCode,
-                 state: isPressed
+                keyCode: keyCode,
+                isPressed: isPressed
              }
         );
     };

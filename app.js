@@ -54,10 +54,16 @@ var servModule = require(APP_PATH + '/' + SERVER_FOLDER_NAME + '/socket-server')
 var worldModule = require(APP_PATH + '/' + SERVER_FOLDER_NAME + '/world');
 var physicsModule = require(APP_PATH + '/' + SERVER_FOLDER_NAME + '/physics');
 var inputModule = require(APP_PATH + '/' + SERVER_FOLDER_NAME + '/input');
+var gameObjectsModule = require(APP_PATH + '/' + SERVER_FOLDER_NAME + '/game-objects');
+var utilsModule = require(APP_PATH + '/' + SERVER_FOLDER_NAME + '/utils');
+var assetsModule = require(APP_PATH + '/' + SERVER_FOLDER_NAME + '/assets');
 
 var serv = servModule.serv(LOCALHOST_PORT, APP_PATH, CLIENT_FOLDER_NAME, INDEX_FILENAME);
 servModule.io(serv, worldModule.onConnect, worldModule.onDisconnect, worldModule.onInputEvent);
 
+worldModule.init(inputModule, physicsModule, gameObjectsModule, utilsModule, assetsModule);
+
+// TODO: вынести функцию
 setInterval(function() {
     var worldMap = worldModule.getWorldMap();
     servModule.sendWorldMap(worldMap);

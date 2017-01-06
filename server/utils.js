@@ -1,4 +1,12 @@
 /**
+ * возвращает случайное положительное число
+ * @returns {number}
+ */
+module.exports.getRandom = function() {
+    return Math.random();
+};
+
+/**
  * возвращает случайное дробное число [min; max)
  * @param min
  * @param max
@@ -16,4 +24,4 @@ module.exports.getRandNum = function(min, max) {
  */
 module.exports.getRandInt = function(min, max) {
     return Math.round(getRandNum(min, max));
-}
+};
